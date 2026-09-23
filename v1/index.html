@@ -1,0 +1,408 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="robots" content="noindex, nofollow">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gobernanza de Licencias de Claude — AlmaWolf</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --red: #C13B2F;
+  --navy: #1C1C2E;
+  --bg: #EDECEB;
+  --white: #fff;
+  --gray: #6B7280;
+  --dark: #0F1119;
+  --border: #D5D4D2;
+  --f: 'Inter', system-ui, sans-serif;
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+body { font-family: var(--f); background: var(--bg); overflow: hidden; }
+
+.slide {
+  position: absolute; inset: 0;
+  width: 100vw; height: 100vh;
+  padding: 56px 72px 80px;
+  display: none; flex-direction: column;
+  background: var(--bg);
+  opacity: 0; transition: opacity .25s ease;
+}
+.slide.active { display: flex; opacity: 1; }
+
+.lbl {
+  position: absolute; top: 36px; left: 72px;
+  display: flex; align-items: center; gap: 8px;
+  font-size: 8.5px; font-weight: 700; letter-spacing: .12em;
+  text-transform: uppercase; color: var(--navy);
+}
+.lbl-diamond {
+  width: 8px; height: 8px;
+  background: var(--red);
+  transform: rotate(45deg); flex-shrink: 0;
+}
+.aw {
+  position: absolute; top: 32px; right: 72px;
+  display: flex; align-items: center;
+}
+.aw img { height: 22px; display: block; }
+
+.d1 { font-size: clamp(38px,5.2vw,76px); font-weight: 300; line-height: 1.05; color: var(--navy); }
+.d2 { font-size: clamp(28px,3.5vw,52px); font-weight: 400; line-height: 1.1; color: var(--navy); }
+.d1 em, .d2 em, .accent { color: var(--red); font-style: normal; }
+.body { font-size: clamp(13px,1.15vw,15.5px); color: var(--gray); line-height: 1.65; }
+.stat-n { font-size: clamp(36px,4.8vw,68px); font-weight: 800; color: var(--red); line-height: 1; }
+.stat-l { font-size: 12px; font-weight: 500; color: var(--gray); margin-top: 4px; }
+
+/* Marca de placeholder — retirar al rellenar contenido */
+.ph {
+  display: inline-block; margin-top: 12px;
+  font-size: 11px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+  color: var(--red); background: rgba(193,59,47,.08);
+  border: 1px dashed var(--red); border-radius: 6px; padding: 6px 12px;
+}
+.ph-box {
+  border: 1px dashed var(--border); border-radius: 10px;
+  background: rgba(255,255,255,.4);
+  padding: 28px; margin-top: 20px; color: var(--gray);
+  font-size: 13.5px; line-height: 1.6;
+}
+
+.nav{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);display:flex;align-items:center;gap:10px;background:rgba(15,17,25,.82);border-radius:24px;padding:7px 14px;color:#fff;font-size:12.5px;backdrop-filter:blur(10px);z-index:200;font-family:var(--f)}
+.nav button{background:none;border:none;color:rgba(255,255,255,.75);cursor:pointer;padding:3px 7px;font-size:15px;transition:color .15s}
+.nav button:hover{color:#fff}
+.nav .cnt{min-width:44px;text-align:center;color:rgba(255,255,255,.5);font-size:11px}
+.nav .kh{font-size:10px;color:rgba(255,255,255,.3);margin-left:4px}
+
+/* ── PORTADA / CIERRE ── */
+#s1{background:var(--white);flex-direction:column;justify-content:flex-end;padding:0 0 88px 80px}
+#s7{background:var(--white);flex-direction:column;justify-content:flex-end;padding:0 0 88px 80px}
+.port-bg{position:absolute;inset:0;pointer-events:none}
+.port-red{position:absolute;top:0;left:0;width:46%;height:56%;background:var(--red);clip-path:polygon(0 0,100% 0,0 100%)}
+.port-gray{position:absolute;top:0;left:0;width:56%;height:66%;background:#C8C7C5;opacity:.45;clip-path:polygon(0 0,100% 0,0 100%)}
+.port-content{position:relative;z-index:1}
+.port-title{font-size:clamp(48px,6.5vw,88px);font-weight:300;color:var(--navy);line-height:1.05;margin-bottom:12px}
+.port-sub{font-size:clamp(22px,2.4vw,32px);font-weight:300;color:var(--gray);margin-bottom:24px}
+#s7 .port-red{width:36%;height:44%}
+#s7 .port-gray{width:44%;height:52%}
+#s7 .port-title{font-size:clamp(40px,5.5vw,72px)}
+/* Static waveform bars (portada — no animation) */
+.wave{display:flex;align-items:center;gap:2.5px;height:38px;margin-bottom:18px}
+.wave span{display:block;width:3px;border-radius:2px;background:var(--red)}
+
+.idx-grid {
+  display: grid; grid-template-columns: 1fr 1fr; gap: 0;
+  margin-top: 32px; flex: 1;
+}
+.idx-row {
+  display: flex; align-items: center; gap: 16px;
+  padding: 13px 0; border-bottom: 1px solid var(--border);
+  font-size: clamp(12px,1.1vw,14.5px); color: var(--navy);
+}
+.idx-n { color: var(--red); font-weight: 700; font-size: 11px; min-width: 24px; }
+
+/* Patrón problema → solución (para rellenar) */
+.prows { display: flex; flex-direction: column; gap: 10px; margin-top: 24px; }
+.prow { display: flex; align-items: flex-start; gap: 12px; padding-bottom: 10px; border-bottom: 1px solid var(--border); }
+.pp { font-size: 12.5px; font-weight: 600; color: var(--navy); min-width: 200px; }
+.pa { color: var(--red); font-size: 16px; padding-top: 1px; flex-shrink: 0; }
+.ps-lbl { font-size: 8.5px; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; color: var(--red); }
+.ps-txt { font-size: 12.5px; color: var(--gray); margin-top: 2px; }
+
+/* Cards de fases / roadmap (para rellenar) */
+.next-grid { display: grid; grid-template-columns: repeat(2,1fr); gap: 16px; margin-top: 28px; }
+.next-card { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 24px; }
+.next-n { font-size: 11px; font-weight: 700; color: var(--red); letter-spacing: .08em; margin-bottom: 10px; }
+.next-diamond { display: inline-block; width: 8px; height: 8px; background: var(--red); transform: rotate(45deg); margin-right: 6px; }
+.next-title { font-size: 17px; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.next-body { font-size: 13px; color: var(--gray); line-height: 1.6; }
+
+.dlist { list-style: none; display: flex; flex-direction: column; gap: 10px; margin-top: 12px; }
+.dlist li { display: flex; gap: 10px; align-items: flex-start; font-size: 13.5px; color: var(--navy); }
+.dlist li::before { content: ''; width: 7px; height: 7px; background: var(--red); transform: rotate(45deg); flex-shrink: 0; margin-top: 5px; }
+
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; flex: 1; margin-top: 24px; }
+
+code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; background: rgba(193,59,47,.1); color: var(--red); padding: 1px 5px; border-radius: 3px; }
+
+/* ── Diagrama organizativo (S3 / S4) ── */
+.org { display: grid; grid-template-columns: repeat(4,1fr); gap: 12px; margin-top: 18px; align-items: start; }
+.org.org5 { grid-template-columns: repeat(5,1fr); }
+.co { background: var(--white); border: 1px solid var(--border); border-radius: 10px; padding: 12px 14px; }
+.co.iso { border: 1.5px dashed var(--red); background: rgba(193,59,47,.04); }
+.co-h { font-size: 11.5px; font-weight: 700; color: var(--navy); margin-bottom: 9px; display: flex; align-items: center; gap: 6px; flex-wrap: wrap; }
+.co-h .dot { width: 7px; height: 7px; background: var(--red); transform: rotate(45deg); flex-shrink: 0; }
+.co-tag { font-size: 8px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: var(--gray); background: rgba(0,0,0,.05); padding: 2px 6px; border-radius: 10px; }
+.mem { display: flex; justify-content: space-between; align-items: center; gap: 8px; padding: 4px 0; font-size: 11px; color: var(--navy); border-bottom: 1px dashed var(--border); }
+.mem:last-child { border-bottom: none; }
+.co-note { font-size: 9.5px; color: var(--gray); font-style: italic; margin-top: 6px; }
+.co-sub { margin-top: 8px; padding: 8px 10px; border: 1px dashed var(--red); border-radius: 8px; background: rgba(193,59,47,.04); }
+.co-sub-h { font-size: 9px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--red); margin-bottom: 4px; }
+.badge { font-size: 9px; font-weight: 700; padding: 2px 8px; border-radius: 20px; white-space: nowrap; flex-shrink: 0; }
+.b-max { background: rgba(193,59,47,.12); color: var(--red); }
+.b-pro { background: rgba(107,114,128,.16); color: var(--gray); }
+.b-prem { background: var(--red); color: #fff; }
+.b-std { background: rgba(28,28,46,.1); color: var(--navy); }
+.b-warn { background: rgba(193,59,47,.18); color: var(--red); }
+.gov { background: var(--dark); color: #fff; border-radius: 10px; padding: 11px 18px; display: flex; align-items: center; gap: 10px; flex-wrap: wrap; font-size: 11px; margin-top: 16px; }
+.gov b { color: #fff; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; font-size: 9.5px; }
+.gov span { color: rgba(255,255,255,.8); }
+.gov .sep { color: rgba(255,255,255,.3); }
+.warn { display: flex; align-items: baseline; gap: 12px; background: rgba(193,59,47,.07); border-left: 3px solid var(--red); border-radius: 6px; padding: 12px 16px; margin-top: 18px; }
+.warn b { color: var(--red); font-weight: 700; letter-spacing: .06em; text-transform: uppercase; font-size: 10px; white-space: nowrap; }
+.warn span { font-size: 12px; color: var(--navy); line-height: 1.5; }
+.warn.tradeoff { background: rgba(0,0,0,.03); border-left-color: var(--gray); }
+.warn.tradeoff b { color: var(--gray); }
+
+/* ── Tabla de costes (S5) ── */
+.ct { width: 100%; border-collapse: collapse; margin-top: 12px; font-size: 12px; }
+.ct th, .ct td { text-align: left; padding: 7px 12px; border-bottom: 1px solid var(--border); }
+.ct th { font-size: 9px; text-transform: uppercase; letter-spacing: .1em; color: var(--gray); font-weight: 700; }
+.ct .num { text-align: right; font-variant-numeric: tabular-nums; }
+.ct .tot td { border-top: 2px solid var(--navy); border-bottom: none; font-weight: 800; font-size: 13px; color: var(--navy); }
+.ct-foot { display: flex; gap: 32px; margin-top: 16px; align-items: baseline; }
+.ct-foot > div { display: flex; flex-direction: column; gap: 2px; }
+.ct-foot-l { font-size: 9px; text-transform: uppercase; letter-spacing: .1em; color: var(--gray); font-weight: 700; }
+.ct-foot-v { font-size: 18px; font-weight: 800; color: var(--navy); }
+.ct-foot-d .ct-foot-v.delta { color: var(--red); }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════════════════════════════════════════════════
+     v1 · GOBERNANZA DE LICENCIAS DE CLAUDE
+     S1 portada · S2 índice · S3 situación actual · S4 objetivo (Teams)
+     S5 costes por equipo · S6 beneficios/trade-offs · S7 cierre
+     Datos a confirmar: Sanuker (plan/nº usuarios) · inclusión de Alejandro.
+     ═══════════════════════════════════════════════════════════════════ -->
+
+<!-- S1: PORTADA -->
+<div class="slide active" id="s1">
+  <div class="port-bg">
+    <div class="port-gray"></div>
+    <div class="port-red"></div>
+  </div>
+  <div class="port-content">
+    <div class="wave">
+      <span style="height:14px"></span><span style="height:22px"></span><span style="height:30px"></span>
+      <span style="height:20px"></span><span style="height:34px"></span><span style="height:26px"></span>
+      <span style="height:38px"></span><span style="height:22px"></span><span style="height:32px"></span>
+      <span style="height:16px"></span><span style="height:28px"></span><span style="height:20px"></span>
+      <span style="height:24px"></span><span style="height:14px"></span><span style="height:18px"></span>
+    </div>
+    <div class="port-title">Gobernanza de<br>Licencias de Claude</div>
+    <div class="port-sub">Poner orden en las contrataciones</div>
+    <img src="../logo-almawolf-lab.svg" alt="AlmaWolf" style="height:28px;display:block">
+  </div>
+</div>
+
+<!-- S2: ÍNDICE -->
+<div class="slide" id="s2">
+  <div class="lbl"><div class="lbl-diamond"></div><span>Índice</span></div>
+  <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
+  <div class="d2" style="margin-top:56px">Índice — Lo que vamos a ver.</div>
+  <div class="idx-grid">
+    <div class="idx-row"><span class="idx-n">01</span><span>Situación actual</span></div>
+    <div class="idx-row"><span class="idx-n">03</span><span>Costes por equipo</span></div>
+    <div class="idx-row"><span class="idx-n">02</span><span>Situación objetivo — plan Team</span></div>
+    <div class="idx-row"><span class="idx-n">04</span><span>Beneficios y trade-offs</span></div>
+    <div class="idx-row" style="border-bottom:none"></div>
+    <div class="idx-row" style="border-bottom:none"></div>
+  </div>
+</div>
+
+<!-- S3: SITUACIÓN ACTUAL -->
+<div class="slide" id="s3">
+  <div class="lbl"><div class="lbl-diamond"></div><span>Situación actual</span></div>
+  <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="d2" style="margin-bottom:2px">Licencias dispersas,<br><em>sin control ni aislamiento</em></div>
+    <div class="org">
+      <div class="co">
+        <div class="co-h"><span class="dot"></span>Sanuker</div>
+        <div class="mem"><span>Cuenta compartida</span><span class="badge b-warn">Max ⚠</span></div>
+      </div>
+      <div class="co">
+        <div class="co-h"><span class="dot"></span>Sagitaz</div>
+        <div class="mem"><span>Pau · pruebas</span><span class="badge b-pro">Pro</span></div>
+      </div>
+      <div class="co">
+        <div class="co-h"><span class="dot"></span>Ciudadano</div>
+        <div class="mem"><span>Enrique</span><span class="badge b-max">Max</span></div>
+      </div>
+      <div class="co">
+        <div class="co-h"><span class="dot"></span>Almawolf</div>
+        <div class="mem"><span>Gabriel</span><span class="badge b-max">Max</span></div>
+        <div class="mem"><span>Edu</span><span class="badge b-max">Max</span></div>
+        <div class="co-sub">
+          <div class="co-sub-h">Finanzas · sin aislar ⚠</div>
+          <div class="mem"><span>Almudena</span><span class="badge b-warn">Max</span></div>
+          <div class="mem"><span>Marina · Antonio · Luis · Fermín</span><span class="badge b-pro">Pro ×4</span></div>
+        </div>
+      </div>
+    </div>
+    <div class="warn">
+      <b>Sin gobernanza</b>
+      <span>Sin administración central · sin facturación por empresa · cuentas compartidas (Sanuker) · datos de Finanzas accesibles a quien no debe.</span>
+    </div>
+  </div>
+</div>
+
+<!-- S4: SITUACIÓN OBJETIVO -->
+<div class="slide" id="s4">
+  <div class="lbl"><div class="lbl-diamond"></div><span>Situación objetivo</span></div>
+  <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="d2" style="margin-bottom:2px">Teams por empresa,<br><em>Finanzas aislada</em></div>
+    <div class="gov">
+      <b>Capa de gobernanza</b>
+      <span>SSO</span><span class="sep">·</span>
+      <span>Admin central</span><span class="sep">·</span>
+      <span>Facturación por empresa</span><span class="sep">·</span>
+      <span>Sin entreno con vuestros datos</span>
+    </div>
+    <div class="org org5">
+      <div class="co">
+        <div class="co-h"><span class="dot"></span>Sanuker <span class="co-tag">Individual</span></div>
+        <div class="mem"><span>1 cuenta</span><span class="badge b-max">Max</span></div>
+        <div class="co-note">A regularizar</div>
+      </div>
+      <div class="co">
+        <div class="co-h"><span class="dot"></span>Sagitaz <span class="co-tag">Individual</span></div>
+        <div class="mem"><span>Pau</span><span class="badge b-pro">Pro</span></div>
+        <div class="co-note">Sin cambio</div>
+      </div>
+      <div class="co">
+        <div class="co-h"><span class="dot"></span>Ciudadano <span class="co-tag">Team</span></div>
+        <div class="mem"><span>Enrique</span><span class="badge b-prem">Premium</span></div>
+        <div class="mem"><span>Alejandro</span><span class="badge b-std">Standard</span></div>
+      </div>
+      <div class="co">
+        <div class="co-h"><span class="dot"></span>Almawolf · General <span class="co-tag">Team</span></div>
+        <div class="mem"><span>Gabriel</span><span class="badge b-prem">Premium</span></div>
+        <div class="mem"><span>Edu</span><span class="badge b-prem">Premium</span></div>
+      </div>
+      <div class="co iso">
+        <div class="co-h"><span class="dot"></span>Almawolf · Finanzas 🔒 <span class="co-tag">Team aislado</span></div>
+        <div class="mem"><span>Almudena</span><span class="badge b-std">Standard</span></div>
+        <div class="mem"><span>Marina · Antonio · Luis · Fermín</span><span class="badge b-std">Std ×4</span></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- S5: COSTES POR EQUIPO -->
+<div class="slide" id="s5">
+  <div class="lbl"><div class="lbl-diamond"></div><span>Costes por equipo</span></div>
+  <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="d2" style="margin-bottom:2px">Hoy vs. objetivo</div>
+    <p class="body">Objetivo con facturación anual. El plan Max es solo mensual.</p>
+    <table class="ct">
+      <thead>
+        <tr><th>Equipo</th><th>Hoy</th><th class="num">$/mes</th><th>Objetivo (Team)</th><th class="num">$/mes</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sanuker</td><td>1 Max (compartida)</td><td class="num">100</td><td>1 Max — a regularizar</td><td class="num">100</td></tr>
+        <tr><td>Sagitaz</td><td>1 Pro (pruebas)</td><td class="num">20</td><td>1 Pro — sin cambio</td><td class="num">20</td></tr>
+        <tr><td>Ciudadano</td><td>Enrique · Max</td><td class="num">100</td><td>Enrique Premium + Alejandro Standard</td><td class="num">120</td></tr>
+        <tr><td>Almawolf · General</td><td>Gabriel + Edu · Max</td><td class="num">200</td><td>2 × Premium</td><td class="num">200</td></tr>
+        <tr><td>Almawolf · Finanzas</td><td>Almudena Max + 4 Pro</td><td class="num">180</td><td>5 × Standard (aislado)</td><td class="num">100</td></tr>
+        <tr class="tot"><td>Total</td><td></td><td class="num">600</td><td></td><td class="num">540</td></tr>
+      </tbody>
+    </table>
+    <div class="ct-foot">
+      <div><span class="ct-foot-l">Hoy</span><span class="ct-foot-v">$7.200 / año</span></div>
+      <div><span class="ct-foot-l">Objetivo</span><span class="ct-foot-v">$6.480 / año</span></div>
+      <div class="ct-foot-d"><span class="ct-foot-l">Ahorro</span><span class="ct-foot-v delta">−$720 / año · −10%</span></div>
+    </div>
+  </div>
+</div>
+
+<!-- S6: BENEFICIOS Y TRADE-OFFS -->
+<div class="slide" id="s6">
+  <div class="lbl"><div class="lbl-diamond"></div><span>Beneficios y trade-offs</span></div>
+  <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="d2" style="margin-bottom:2px">El ROI es gobernanza,<br><em>no precio</em></div>
+    <div class="next-grid">
+      <div class="next-card">
+        <div class="next-n"><span class="next-diamond"></span>01 · Aislamiento de datos</div>
+        <div class="next-body">Finanzas en su propio Team; personas no autorizadas fuera. Fin del riesgo de la cuenta compartida.</div>
+      </div>
+      <div class="next-card">
+        <div class="next-n"><span class="next-diamond"></span>02 · Facturación imputable</div>
+        <div class="next-body">Cada empresa asume su coste en su P&amp;L, con visibilidad y control del gasto.</div>
+      </div>
+      <div class="next-card">
+        <div class="next-n"><span class="next-diamond"></span>03 · Administración central</div>
+        <div class="next-body">Alta/baja de usuarios, SSO y controles de admin. Sin entrenamiento con vuestros datos por defecto.</div>
+      </div>
+      <div class="next-card">
+        <div class="next-n"><span class="next-diamond"></span>04 · Capacidad de los devs</div>
+        <div class="next-body">Asiento Premium = 6,25× el uso de Pro (≥ Max 5x actual). Standard 1,25× para consulta.</div>
+      </div>
+    </div>
+    <div class="warn tradeoff">
+      <b>Trade-off honesto</b>
+      <span>El coste por dev no baja (Premium ≈ Max); el ahorro (−10%) viene de Finanzas. Sanuker y Sagitaz siguen como cuentas individuales, pendientes de regularizar.</span>
+    </div>
+  </div>
+</div>
+
+<!-- S7: CIERRE -->
+<div class="slide" id="s7">
+  <div class="port-bg">
+    <div class="port-gray"></div>
+    <div class="port-red"></div>
+  </div>
+  <div class="port-content">
+    <div class="wave">
+      <span style="height:18px"></span><span style="height:30px"></span><span style="height:14px"></span>
+      <span style="height:38px"></span><span style="height:22px"></span><span style="height:26px"></span>
+      <span style="height:16px"></span><span style="height:40px"></span>
+    </div>
+    <div class="port-title">Gobernanza de<br>Licencias de Claude</div>
+    <div class="port-sub">Gobernanza, aislamiento y coste bajo control.</div>
+    <img src="../logo-almawolf-lab.svg" alt="AlmaWolf" style="height:28px;display:block">
+  </div>
+</div>
+
+<!-- NAV -->
+<nav class="nav">
+  <button id="prev" title="Anterior">‹</button>
+  <span class="cnt" id="cnt">1 / 7</span>
+  <button id="next" title="Siguiente">›</button>
+  <span class="kh">← →</span>
+</nav>
+
+<script>
+(function(){
+  const slides = document.querySelectorAll('.slide');
+  const cnt = document.getElementById('cnt');
+  let cur = 0;
+  function go(n){
+    slides[cur].classList.remove('active');
+    cur = (n + slides.length) % slides.length;
+    slides[cur].classList.add('active');
+    cnt.textContent = (cur+1) + ' / ' + slides.length;
+  }
+  document.getElementById('next').onclick = () => go(cur+1);
+  document.getElementById('prev').onclick = () => go(cur-1);
+  document.addEventListener('keydown', e => {
+    if(e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === ' ') go(cur+1);
+    if(e.key === 'ArrowLeft'  || e.key === 'ArrowUp') go(cur-1);
+  });
+})();
+</script>
+<script>
+  window.WEB_REVIEW_CONFIG = {
+    projectName: 'gobernanza-v1',
+    webhookUrl:  'https://script.google.com/macros/s/AKfycbw1ghOs1ufrnZu89Q0Ow9bV3n5hoyyDJ6XJ2MWKr8Xfb0sq9vp2CaT86ks4C3Rgu9vnGg/exec',
+    brandColor:  '#C13B2F'
+  };
+</script>
+<script src="web-review-mode.js"></script>
+</body>
+</html>
