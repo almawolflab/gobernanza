@@ -172,8 +172,8 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
 
 <!-- ═══════════════════════════════════════════════════════════════════
      v1 · GOBERNANZA DE LICENCIAS DE CLAUDE
-     S1 portada · S2 índice · S3 situación actual · S4 objetivo (Teams)
-     S5 costes por equipo · S6 beneficios/trade-offs · S7 cierre
+     S1 portada · S2 índice · S3 panorama IA · S4 situación actual Claude
+     S5 objetivo (Teams) · S6 costes por equipo · S7 beneficios/trade-offs
      Datos a confirmar: Sanuker (plan/nº usuarios) · inclusión de Alejandro.
      ═══════════════════════════════════════════════════════════════════ -->
 
@@ -203,54 +203,68 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
   <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
   <div class="d2" style="margin-top:56px">Índice — Lo que vamos a ver.</div>
   <div class="idx-grid">
-    <div class="idx-row"><span class="idx-n">01</span><span>Situación actual</span></div>
-    <div class="idx-row"><span class="idx-n">03</span><span>Costes por equipo</span></div>
-    <div class="idx-row"><span class="idx-n">02</span><span>Situación objetivo — plan Team</span></div>
-    <div class="idx-row"><span class="idx-n">04</span><span>Beneficios y trade-offs</span></div>
-    <div class="idx-row" style="border-bottom:none"></div>
+    <div class="idx-row"><span class="idx-n">01</span><span>Panorama de IA en el grupo</span></div>
+    <div class="idx-row"><span class="idx-n">02</span><span>Situación actual — Claude</span></div>
+    <div class="idx-row"><span class="idx-n">03</span><span>Situación objetivo — plan Team</span></div>
+    <div class="idx-row"><span class="idx-n">04</span><span>Costes por equipo</span></div>
+    <div class="idx-row" style="border-bottom:none"><span class="idx-n">05</span><span>Beneficios y trade-offs</span></div>
     <div class="idx-row" style="border-bottom:none"></div>
   </div>
 </div>
 
-<!-- S3: SITUACIÓN ACTUAL -->
+<!-- S3: PANORAMA DE IA EN EL GRUPO -->
 <div class="slide" id="s3">
-  <div class="lbl"><div class="lbl-diamond"></div><span>Situación actual</span></div>
+  <div class="lbl"><div class="lbl-diamond"></div><span>Panorama de IA</span></div>
   <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-    <div class="d2" style="margin-bottom:2px">Licencias dispersas,<br><em>sin control ni aislamiento</em></div>
-    <div class="org">
-      <div class="co">
-        <div class="co-h"><span class="dot"></span>Sanuker</div>
-        <div class="mem"><span>Cuenta compartida</span><span class="badge b-warn">Max ⚠</span></div>
-      </div>
-      <div class="co">
-        <div class="co-h"><span class="dot"></span>Sagitaz</div>
-        <div class="mem"><span>Pau · pruebas</span><span class="badge b-pro">Pro</span></div>
-      </div>
-      <div class="co">
-        <div class="co-h"><span class="dot"></span>Ciudadano</div>
-        <div class="mem"><span>Enrique</span><span class="badge b-max">Max</span></div>
-      </div>
-      <div class="co">
-        <div class="co-h"><span class="dot"></span>Almawolf</div>
-        <div class="mem"><span>Gabriel</span><span class="badge b-max">Max</span></div>
-        <div class="mem"><span>Edu</span><span class="badge b-max">Max</span></div>
-        <div class="co-sub">
-          <div class="co-sub-h">Finanzas · sin aislar ⚠</div>
-          <div class="mem"><span>Almudena</span><span class="badge b-pro">Pro</span></div>
-          <div class="mem"><span>Marina · Antonio · Luis · Fermín</span><span class="badge b-pro">Pro ×4</span></div>
-        </div>
-      </div>
-    </div>
-    <div class="warn">
+    <div class="d2" style="margin-bottom:8px">No solo Claude —<br><em>IA en todo el grupo</em></div>
+    <table class="ct">
+      <thead>
+        <tr><th>Empresa / Persona</th><th>Herramienta</th><th>Tipo de acceso</th><th class="num">Coste *</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sanuker</td><td>Claude</td><td>API · créditos variables</td><td class="num">~€400 / mes</td></tr>
+        <tr><td>Sanuker</td><td>Claude Pro</td><td>Suscripción</td><td class="num">€180 / año</td></tr>
+        <tr><td>Sanuker</td><td>ChatGPT</td><td>Plus / Team</td><td class="num">~$200 / mes</td></tr>
+        <tr><td>Ciudadano · Finanzas</td><td>ChatGPT</td><td>Team</td><td class="num">€43 / mes</td></tr>
+        <tr><td>Woztell Ventures · Burton</td><td>ChatGPT</td><td>Team</td><td class="num">€20 / mes</td></tr>
+        <tr><td>Enrique</td><td>Claude</td><td>API · créditos variables</td><td class="num">~€800 / mes</td></tr>
+        <tr><td>Enrique</td><td>Perplexity</td><td>Pro + créditos</td><td class="num">€200 + €100–200 / mes</td></tr>
+        <tr><td>Sagitaz</td><td>ChatGPT</td><td>Plus</td><td class="num">€20 / mes</td></tr>
+      </tbody>
+    </table>
+    <p class="body" style="margin-top:10px">* Datos de agosto 2026. Costes de API variables; pendientes de confirmar. No incluye Almawolf (ver diapositiva siguiente).</p>
+  </div>
+</div>
+
+<!-- S4: SITUACIÓN ACTUAL · CLAUDE -->
+<div class="slide" id="s4">
+  <div class="lbl"><div class="lbl-diamond"></div><span>Situación actual · Claude</span></div>
+  <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
+    <div class="d2" style="margin-bottom:8px">Suscripciones Claude<br><em>sin control ni aislamiento</em></div>
+    <table class="ct">
+      <thead>
+        <tr><th>Empresa</th><th>Usuarios</th><th>Plan</th><th class="num">€/mes</th><th>Estado</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>Sanuker</td><td>Cuenta compartida</td><td><span class="badge b-warn">Max</span></td><td class="num">90</td><td><span style="color:var(--red);font-size:11px">⚠ compartida</span></td></tr>
+        <tr><td>Sagitaz</td><td>Pau</td><td><span class="badge b-pro">Pro</span></td><td class="num">18</td><td style="color:var(--gray);font-size:11px">Pruebas</td></tr>
+        <tr><td>Ciudadano</td><td>Enrique</td><td><span class="badge b-max">Max</span></td><td class="num">90</td><td>—</td></tr>
+        <tr><td>Almawolf</td><td>Gabriel + Edu</td><td><span class="badge b-max">Max × 2</span></td><td class="num">180</td><td>—</td></tr>
+        <tr><td>Almawolf · Finanzas</td><td>Almudena + 4</td><td><span class="badge b-pro">Pro × 5</span></td><td class="num">90</td><td><span style="color:var(--red);font-size:11px">⚠ sin aislar</span></td></tr>
+        <tr class="tot"><td>Total</td><td></td><td></td><td class="num">468</td><td></td></tr>
+      </tbody>
+    </table>
+    <div class="warn" style="margin-top:14px">
       <b>Sin gobernanza</b>
       <span>Sin administración central · sin facturación por empresa · cuentas compartidas (Sanuker) · datos de Finanzas accesibles a quien no debe.</span>
     </div>
   </div>
 </div>
 
-<!-- S4: SITUACIÓN OBJETIVO -->
-<div class="slide" id="s4">
+<!-- S5: SITUACIÓN OBJETIVO -->
+<div class="slide" id="s5">
   <div class="lbl"><div class="lbl-diamond"></div><span>Situación objetivo</span></div>
   <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
@@ -292,8 +306,8 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
   </div>
 </div>
 
-<!-- S5: COSTES POR EQUIPO -->
-<div class="slide" id="s5">
+<!-- S6: COSTES POR EQUIPO -->
+<div class="slide" id="s6">
   <div class="lbl"><div class="lbl-diamond"></div><span>Costes por equipo</span></div>
   <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
@@ -319,8 +333,8 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
   </div>
 </div>
 
-<!-- S6: BENEFICIOS Y TRADE-OFFS -->
-<div class="slide" id="s6">
+<!-- S7: BENEFICIOS Y TRADE-OFFS -->
+<div class="slide" id="s7">
   <div class="lbl"><div class="lbl-diamond"></div><span>Beneficios y trade-offs</span></div>
   <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
@@ -353,7 +367,7 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
 <!-- NAV -->
 <nav class="nav">
   <button id="prev" title="Anterior">‹</button>
-  <span class="cnt" id="cnt">1 / 6</span>
+  <span class="cnt" id="cnt">1 / 7</span>
   <button id="next" title="Siguiente">›</button>
   <span class="kh">← →</span>
 </nav>
