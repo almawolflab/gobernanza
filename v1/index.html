@@ -211,7 +211,7 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
     <div class="idx-row"><span class="idx-n">03</span><span>Primary Owner</span></div>
     <div class="idx-row"><span class="idx-n">04</span><span>Plan A — Descentralizado</span></div>
     <div class="idx-row"><span class="idx-n">05</span><span>Estrategia recomendada</span></div>
-    <div class="idx-row" style="border-bottom:none"><span class="idx-n">06</span><span>Costes por equipo</span></div>
+    <div class="idx-row" style="border-bottom:none"><span class="idx-n">06</span><span>Almawolf — Estructura y costes</span></div>
     <div class="idx-row" style="border-bottom:none"></div>
   </div>
 </div>
@@ -261,7 +261,7 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
         <tr><td>Ver / pagar facturas · gestión de facturación</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
         <tr><td>Invitar / eliminar miembros y Admins</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
         <tr><td>Activar integraciones · ver analytics de uso</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
-        <tr><td>Provisionar asientos</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+        <tr><td>Provisionar asientos</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="no">—</td></tr>
         <tr><td>Añadir / eliminar Owners · modificar roles</td><td class="no">—</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td></tr>
         <tr><td>Transferir titularidad de la organización</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="ok">✓</td></tr>
       </tbody>
@@ -310,8 +310,9 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
   <div class="lbl"><div class="lbl-diamond"></div><span>Plan A</span></div>
   <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-    <div class="d2" style="margin-bottom:6px">Plan A — Descentralizado<br><em>una org Team por empresa activa</em></div>
-    <div class="org">
+    <div class="d2" style="margin-bottom:4px">Plan A — Descentralizado<br><em>una org Team por empresa</em></div>
+    <p style="font-size:11px;color:var(--gray);margin-bottom:10px">Cuentas activas conocidas hoy por organización · agosto 2026</p>
+    <div class="org" style="align-items:stretch">
       <div class="co">
         <div class="co-h"><span class="dot"></span>Almawolf <span class="co-tag">Team</span></div>
         <div class="mem"><span style="font-size:9px;color:var(--gray)">PO: claude-admin@almawolf.com</span></div>
@@ -381,29 +382,52 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
 </div>
 
 
-<!-- S11: COSTES POR EQUIPO -->
+<!-- S11: ALMAWOLF — ESQUEMA Y COSTES -->
 <div class="slide" id="s11">
-  <div class="lbl"><div class="lbl-diamond"></div><span>Costes por equipo</span></div>
+  <div class="lbl"><div class="lbl-diamond"></div><span>Almawolf · Detalle</span></div>
   <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-    <div class="d2" style="margin-bottom:2px">Hoy vs. plan ideal</div>
-    <p class="body">Facturación anual donde aplica. Team Standard: €18/asiento/mes · Premium: €90/asiento/mes. Max es solo mensual. Almawolf: 3 cuentas hoy (1 compartida) → 7 asientos en Team.</p>
-    <table class="ct">
-      <thead>
-        <tr><th>Equipo</th><th>Hoy</th><th class="num">€/mes</th><th>Objetivo</th><th class="num">€/mes</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>Sanuker</td><td>1 Max (compartida)</td><td class="num">90</td><td>Team Standard · mín. 2 asientos × €18</td><td class="num">≥ 36</td></tr>
-        <tr><td>Sagitaz</td><td>1 Pro (pruebas)</td><td class="num">18</td><td>1 Pro individual — sin cambio</td><td class="num">18</td></tr>
-        <tr><td>Ciudadano</td><td>Enrique · Max 20x</td><td class="num">180</td><td>Enrique · Max 20x — sin cambio</td><td class="num">180</td></tr>
-        <tr><td>Almawolf</td><td>Gabriel · Max + Edu · Max + Finanzas · Max compartida</td><td class="num">270</td><td>7 asientos: 2 × Premium + 5 × Standard (Finanzas aislada)</td><td class="num">270</td></tr>
-        <tr class="tot"><td>Total</td><td></td><td class="num">558</td><td></td><td class="num">≤ 504</td></tr>
-      </tbody>
-    </table>
-    <div class="ct-foot">
-      <div><span class="ct-foot-l">Hoy</span><span class="ct-foot-v">€6.696 / año</span></div>
-      <div><span class="ct-foot-l">Objetivo</span><span class="ct-foot-v">≤ €6.048 / año</span></div>
-      <div class="ct-foot-d"><span class="ct-foot-l">Δ coste</span><span class="ct-foot-v">≤ −€648 / año si Sanuker regulariza en Team Standard</span></div>
+    <div class="d2" style="margin-bottom:20px">Almawolf<br><em>estructura Team y costes anuales</em></div>
+    <div style="display:grid;grid-template-columns:1.4fr 1fr;gap:48px;align-items:start">
+
+      <!-- Organigrama -->
+      <div>
+        <div class="co">
+          <div class="co-h"><span class="dot"></span>Almawolf <span class="co-tag">Team · claude.ai</span></div>
+          <div class="mem"><span style="font-size:9px;color:var(--gray);font-style:italic">PO: claude-admin@almawolf.com · Admin+Owner: Gabriel</span></div>
+          <div class="mem"><span>Gabriel Noguera</span><span class="badge b-prem">Premium</span></div>
+          <div class="mem"><span>Edu</span><span class="badge b-prem">Premium</span></div>
+          <div class="co-sub" style="margin-top:10px">
+            <div class="co-sub-h">Finanzas 🔒 · Team Aislado</div>
+            <div class="mem"><span>Almudena (Admin)</span><span class="badge b-std">Standard</span></div>
+            <div class="mem"><span style="color:var(--gray)">+ 4 personas del equipo</span><span class="badge b-std">Standard</span></div>
+          </div>
+        </div>
+        <p style="font-size:10px;color:var(--gray);margin-top:10px;line-height:1.6">
+          <code style="font-size:10px">finanzas@almawolf.com</code> recibe facturas de ambas orgs · sin ocupar asiento<br>
+          <code style="font-size:10px">claude-admin@almawolf.com</code> es PO en todas las orgs del grupo
+        </p>
+      </div>
+
+      <!-- Costes anuales -->
+      <div>
+        <p style="font-size:9px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--gray);margin-bottom:10px">Coste anual · facturación anual</p>
+        <table class="ct" style="margin-top:0">
+          <thead>
+            <tr><th>Tipo de asiento</th><th class="num">N</th><th class="num">€/mes</th><th class="num">€/año</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Premium <span style="color:var(--gray);font-size:10px">(Gabriel · Edu)</span></td><td class="num">2</td><td class="num">180</td><td class="num">2.160</td></tr>
+            <tr><td>Standard <span style="color:var(--gray);font-size:10px">(Finanzas)</span></td><td class="num">5</td><td class="num">90</td><td class="num">1.080</td></tr>
+            <tr class="tot"><td>Total</td><td class="num">7</td><td class="num">270</td><td class="num">3.240</td></tr>
+          </tbody>
+        </table>
+        <div class="ct-foot" style="margin-top:14px;flex-wrap:wrap;gap:20px">
+          <div><span class="ct-foot-l">Premium / asiento</span><span class="ct-foot-v">€90 / mes</span></div>
+          <div><span class="ct-foot-l">Standard / asiento</span><span class="ct-foot-v">€18 / mes</span></div>
+        </div>
+      </div>
+
     </div>
   </div>
 </div>
