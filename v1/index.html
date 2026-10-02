@@ -210,9 +210,8 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
     <div class="idx-row"><span class="idx-n">02</span><span>Roles en el plan Team</span></div>
     <div class="idx-row"><span class="idx-n">03</span><span>Primary Owner</span></div>
     <div class="idx-row"><span class="idx-n">04</span><span>Plan A — Descentralizado</span></div>
-    <div class="idx-row"><span class="idx-n">05</span><span>Plan B — Centralizado</span></div>
-    <div class="idx-row"><span class="idx-n">06</span><span>Estrategia recomendada</span></div>
-    <div class="idx-row" style="border-bottom:none"><span class="idx-n">07</span><span>Costes por equipo</span></div>
+    <div class="idx-row"><span class="idx-n">05</span><span>Estrategia recomendada</span></div>
+    <div class="idx-row" style="border-bottom:none"><span class="idx-n">06</span><span>Costes por equipo</span></div>
     <div class="idx-row" style="border-bottom:none"></div>
   </div>
 </div>
@@ -262,7 +261,7 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
         <tr><td>Ver / pagar facturas · gestión de facturación</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
         <tr><td>Invitar / eliminar miembros y Admins</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
         <tr><td>Activar integraciones · ver analytics de uso</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
-        <tr><td>Provisionar asientos</td><td class="no">—</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td></tr>
+        <tr><td>Provisionar asientos</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td><td class="ok">✓</td></tr>
         <tr><td>Añadir / eliminar Owners · modificar roles</td><td class="no">—</td><td class="no">—</td><td class="ok">✓</td><td class="ok">✓</td></tr>
         <tr><td>Transferir titularidad de la organización</td><td class="no">—</td><td class="no">—</td><td class="no">—</td><td class="ok">✓</td></tr>
       </tbody>
@@ -284,19 +283,19 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
         <div class="next-body">Solo puede haber un Primary Owner por org. Solo él puede transferir la titularidad. Ningún Owner puede hacerlo.</div>
       </div>
       <div class="next-card">
-        <div class="next-n"><span class="next-diamond"></span>02 · Ocupa un asiento de pago</div>
-        <div class="next-title">€18 – €90 / mes</div>
-        <div class="next-body">No es una cuenta gratuita de administración. Consume un asiento Standard o Premium como cualquier miembro.</div>
+        <div class="next-n"><span class="next-diamond"></span>02 · Un asiento por organización</div>
+        <div class="next-title">€18 – €90 / org</div>
+        <div class="next-body">La misma cuenta de servicio puede ser PO en todas las orgs del grupo. Consume un asiento en <em>cada</em> organización donde ejerce ese rol.</div>
       </div>
       <div class="next-card">
-        <div class="next-n"><span class="next-diamond"></span>03 · Puede ser cuenta de servicio</div>
-        <div class="next-title">Service account</div>
-        <div class="next-body">Anthropic permite que el PO sea una cuenta no vinculada a una persona. Sobrevive a cambios de personal — recomendado para grupos.</div>
+        <div class="next-n"><span class="next-diamond"></span>03 · Confirmado: multi-org</div>
+        <div class="next-title">Una cuenta,<br>todas las orgs</div>
+        <div class="next-body">Confirmado con Anthropic: el mismo service account puede ser PO en múltiples orgs simultáneamente. Sobrevive a cambios de personal.</div>
       </div>
       <div class="next-card">
         <div class="next-n"><span class="next-diamond"></span>04 · Recomendación Almawolf</div>
-        <div class="next-title">finanzas@<br>almawolf.com</div>
-        <div class="next-body">Cuenta ya existente en el grupo. PO para todas las orgs del grupo. Antonio gestiona la facturación desde ahí.</div>
+        <div class="next-title">claude-admin@<br>almawolf.com</div>
+        <div class="next-body">PO de todas las orgs del grupo. <code>finanzas@almawolf.com</code> recibe las facturas — sin necesidad de ocupar asiento.</div>
       </div>
     </div>
     <div class="warn" style="margin-top:14px">
@@ -315,7 +314,7 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
     <div class="org">
       <div class="co">
         <div class="co-h"><span class="dot"></span>Almawolf <span class="co-tag">Team</span></div>
-        <div class="mem"><span style="font-size:9px;color:var(--gray)">PO: finanzas@almawolf.com</span></div>
+        <div class="mem"><span style="font-size:9px;color:var(--gray)">PO: claude-admin@almawolf.com</span></div>
         <div class="mem"><span>Gabriel · Edu</span><span class="badge b-prem">Premium</span></div>
         <div class="co-sub">
           <div class="co-sub-h">Finanzas 🔒 · Team aislado</div>
@@ -347,53 +346,12 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
       </ul>
       <div class="warn tradeoff" style="margin-top:0">
         <b>Lo que cedemos</b>
-        <span>N facturas, N gestiones. Sin visión consolidada de uso entre orgs. Confirmar con Anthropic si finanzas@almawolf.com puede ser PO en varias orgs.</span>
+        <span>N facturas, N gestiones. Sin visión consolidada de uso entre orgs. <strong>Confirmado:</strong> claude-admin@almawolf.com puede ser PO en todas las orgs simultáneamente.</span>
       </div>
     </div>
   </div>
 </div>
 
-<!-- S8: PLAN B — CENTRALIZADO -->
-<div class="slide" id="s8">
-  <div class="lbl"><div class="lbl-diamond"></div><span>Plan B</span></div>
-  <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
-  <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-    <div class="d2" style="margin-bottom:6px">Plan B — Centralizado<br><em>todos bajo una org Almawolf</em></div>
-    <div class="co" style="border-color:var(--navy);border-width:1.5px">
-      <div class="co-h" style="margin-bottom:10px"><span class="dot"></span>Almawolf Group — Organización Team central <span class="co-tag">PO: finanzas@almawolf.com</span></div>
-      <div style="display:grid;grid-template-columns:repeat(3,1fr);gap:10px">
-        <div>
-          <div class="co-sub-h">Owners (Almawolf)</div>
-          <div class="mem"><span>Gabriel</span><span class="badge b-prem">Premium</span></div>
-          <div class="mem"><span>Edu</span><span class="badge b-prem">Premium</span></div>
-        </div>
-        <div>
-          <div class="co-sub-h">Admins — por empresa</div>
-          <div class="mem"><span>Enrique · Ciudadano</span><span class="badge b-std">Admin</span></div>
-          <div class="mem"><span>Pau · Bisiq</span><span class="badge b-std">Admin</span></div>
-          <div class="mem"><span>Roy · Sanuker</span><span class="badge b-std">Admin</span></div>
-        </div>
-        <div>
-          <div class="co-sub-h">Finanzas ⚠ aislamiento relativo</div>
-          <div class="mem"><span>Almudena + 4</span><span class="badge b-std">Standard</span></div>
-          <div class="co-note">Proyectos privados — mismo workspace que el resto</div>
-        </div>
-      </div>
-    </div>
-    <div style="display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:12px">
-      <ul class="dlist">
-        <li>Una sola factura y un solo contrato Anthropic</li>
-        <li>Admin central — alta/baja desde un punto</li>
-        <li>SSO unificado para todos los dominios del grupo</li>
-        <li>Visión consolidada de uso y analytics</li>
-      </ul>
-      <div class="warn" style="margin-top:0">
-        <b>Límite crítico</b>
-        <span>Sin aislamiento real de datos entre empresas dentro de la misma org. Factura única dificulta la imputación al P&L de cada empresa.</span>
-      </div>
-    </div>
-  </div>
-</div>
 
 <!-- S9: ESTRATEGIA RECOMENDADA -->
 <div class="slide" id="s9">
@@ -404,20 +362,20 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
     <div class="next-grid" style="margin-top:0">
       <div class="next-card">
         <div class="next-n"><span class="next-diamond"></span>01 · Cuenta de servicio</div>
-        <div class="next-body">Usar <code>finanzas@almawolf.com</code> como Primary Owner de cada org del grupo. Gobernanza institucional, no personal. Antonio gestiona la facturación.</div>
+        <div class="next-body"><code>claude-admin@almawolf.com</code> como Primary Owner en todas las orgs. Ocupa un asiento por org. <code>finanzas@almawolf.com</code> recibe facturas sin necesidad de asiento.</div>
       </div>
       <div class="next-card">
         <div class="next-n"><span class="next-diamond"></span>02 · Orden de activación</div>
-        <div class="next-body">Primero: Almawolf (Gabriel + Edu + Finanzas aislada). Segundo: Ciudadano (Enrique, sin Alejandro por ahora). Bisiq y Sanuker a regularizar.</div>
+        <div class="next-body">Primero: Almawolf (7 asientos — Gabriel + Edu Premium, Finanzas ×5 Standard, aislada). Segundo: Sagitaz. Ciudadano y Sanuker a regularizar.</div>
       </div>
       <div class="next-card">
-        <div class="next-n"><span class="next-diamond"></span>03 · API independiente</div>
-        <div class="next-body">Costes API de Sanuker (~€400/mes) y Enrique (~€800/mes) se gestionan vía Anthropic Console. El plan Team no cubre uso de API.</div>
+        <div class="next-n"><span class="next-diamond"></span>03 · API y presupuesto por usuario</div>
+        <div class="next-body">API de Sanuker (~€400/mes) y Enrique (~€800/mes) se gestionan en Anthropic Console. Asignar créditos y límites por workspace o usuario desde ahí.</div>
       </div>
     </div>
     <div class="warn tradeoff" style="margin-top:12px">
-      <b>Verificar con Anthropic</b>
-      <span>Confirmar si finanzas@almawolf.com puede ser Primary Owner en múltiples orgs simultáneamente. Si no, designar un PO titular por empresa con transferencia a Almawolf como paso posterior.</span>
+      <b>Pendiente verificar</b>
+      <span>¿Puede <code>claude-admin@almawolf.com</code> añadir créditos de API o solo el Primary Owner titular de cada workspace de Console? Confirmar con Anthropic antes de la activación.</span>
     </div>
   </div>
 </div>
@@ -428,8 +386,8 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
   <div class="lbl"><div class="lbl-diamond"></div><span>Costes por equipo</span></div>
   <div class="aw"><img src="../logo-almawolf-lab.svg" alt="AlmaWolf Lab" style="height:22px"></div>
   <div style="flex:1;display:flex;flex-direction:column;justify-content:center">
-    <div class="d2" style="margin-bottom:2px">Hoy vs. objetivo</div>
-    <p class="body">Objetivo con facturación anual. El plan Max es solo mensual.</p>
+    <div class="d2" style="margin-bottom:2px">Hoy vs. plan ideal</div>
+    <p class="body">Objetivo con facturación anual. El plan Max es solo mensual. Almawolf: 3 cuentas hoy (1 compartida) → 7 asientos individuales en Team.</p>
     <table class="ct">
       <thead>
         <tr><th>Equipo</th><th>Hoy</th><th class="num">€/mes</th><th>Objetivo (Team)</th><th class="num">€/mes</th></tr>
@@ -438,7 +396,7 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
         <tr><td>Sanuker</td><td>1 Max (compartida)</td><td class="num">90</td><td>1 Max — a regularizar</td><td class="num">90</td></tr>
         <tr><td>Sagitaz</td><td>1 Pro (pruebas)</td><td class="num">18</td><td>1 Pro — sin cambio</td><td class="num">18</td></tr>
         <tr><td>Ciudadano</td><td>Enrique · Max 20x</td><td class="num">180</td><td>Enrique · Max 20x (sin cambio)</td><td class="num">180</td></tr>
-        <tr><td>Almawolf</td><td>Gabriel · Max + Edu · Max + Finanzas · Max compartida</td><td class="num">270</td><td>2 × Premium + 5 × Standard (Finanzas aislado)</td><td class="num">270</td></tr>
+        <tr><td>Almawolf</td><td>Gabriel · Max + Edu · Max + Finanzas · Max compartida</td><td class="num">270</td><td>7 asientos: 2 × Premium + 5 × Standard (Finanzas aislada)</td><td class="num">270</td></tr>
         <tr class="tot"><td>Total</td><td></td><td class="num">558</td><td></td><td class="num">558</td></tr>
       </tbody>
     </table>
@@ -454,7 +412,7 @@ code { font-family: 'SF Mono', 'Fira Code', monospace; font-size: .88em; backgro
 <!-- NAV -->
 <nav class="nav">
   <button id="prev" title="Anterior">‹</button>
-  <span class="cnt" id="cnt">1 / 9</span>
+  <span class="cnt" id="cnt">1 / 8</span>
   <button id="next" title="Siguiente">›</button>
   <span class="kh">← →</span>
 </nav>
